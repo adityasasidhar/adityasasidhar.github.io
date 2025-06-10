@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/favicon.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="matrix-terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="terminal-btn red"></span>
+                    <span class="terminal-btn yellow"></span>
+                    <span class="terminal-btn green"></span>
+                </div>
+                <span class="terminal-title">system_boot.exe</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">> Initializing portfolio...</div>
+                <div class="terminal-line">> Loading core modules...</div>
+                <div class="terminal-line">> Starting developer environment...</div>
+                <div class="terminal-line">> Compiling portfolio components...</div>
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                    <div class="progress-text">0%</div>
+                </div>
+                <div class="binary-rain"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Three.js Background Container -->
+    <div id="threejs-bg"></div>
+
+    <!-- Header Section -->
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="assets/Logo.png" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Skills</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times" id="menu-close" onclick="closemenu()"></i>
+                </ul>
+                <i class="fas fa-bars" id="menu-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <h1>Hi, I'm <span>Aditya Sasidhar</span><br>
+                    <span class="typing-effect"></span></h1>                  
+                <p>I'm a Computer Science undergrad, <br> and an AIML enthusiast</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/aditya-sasidhar-2399bb27a" target="_blank" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+
+                    <a href="https://github.com/adityasasidhar" target="_blank" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <a href="https://www.kaggle.com/tadityasasidhar" target="_blank" title="Kaggle">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Kaggle_logo.png" alt="Kaggle" style="height: 24px; vertical-align: middle;">
+                    </a>
+
+                    <a href="https://huggingface.co/adityasasidhar" target="_blank" title="Hugging Face">
+                        <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" style="height: 24px; vertical-align: middle;">
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="scroll-animation">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="assets/Photo1.png">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>
+                        Hey there! I’m <strong>Aditya</strong>, a curious coder, AI enthusiast, and full-time tech explorer, currently studying Computer Science (AI & ML) at VIT.
+                    </p>
+
+                    <p>
+                        I’m passionate about turning ideas into reality through code — whether that’s building innovative machine learning models, developing full-stack web apps, or experimenting with cybersecurity and custom language models just for the thrill of it. From deepfake detectors to GPT-powered job agents, I’ve dabbled in a variety of exciting projects (and yes, I actually <em>enjoy</em> debugging!).
+                    </p>
+
+                    <p>
+                        When I’m not deep into code, you’ll likely find me chasing new project ideas, diving into the latest deep learning research, or competing in hackathons (I’ve earned a few accolades in national competitions, too!).
+                    </p>
+
+                    <p>
+                        I’m always looking to learn, build, and collaborate. If you’re into AI, clean code, or ambitious tech projects, I’m sure we’ll get along great.
+                    </p>
+
+                    <p>
+                        Let’s create something awesome together!
+                    </p>
+
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('education')">Educational Experience</p>
+                        <p class="tab-links" onclick="opentab('experience')">Real Life Experience</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><strong>Programming Languages:</strong> Python, C, C++, Java, HTML, CSS, MATLAB</li>
+                            <li><strong>Machine Learning & Data Science:</strong>
+                                Scikit-learn, Logistic Regression, SVM, Random Forest, Gradient Boosting, XGBoost,
+                                LightGBM, K-Means, DBSCAN, PCA, t-SNE, Decision Trees, Naïve Bayes, KNN, Lasso, Ridge,
+                                SVR, Isolation Forest, One-Class SVM, Hyperparameter Tuning, Cross-Validation, Model Evaluation,
+                                Feature Engineering, Dimensionality Reduction
+                            </li>
+                            <li><strong>Deep Learning & Generative AI:</strong>
+                                TensorFlow, Keras, PyTorch, Transformers, Hugging Face, LSTMs, GRUs, CNNs, Diffusion Models,
+                                BERT, GPT, Stable Diffusion, LoRA, Attention Mechanisms, Transfer Learning, Model Fine-Tuning,
+                                Tokenization, Prompt Engineering
+                            </li>
+                            <li><strong>Data Analysis & Visualization:</strong>
+                                NumPy, Pandas, Matplotlib, Seaborn, SciPy, Plotly
+                            </li>
+                            <li><strong>Cybersecurity:</strong>
+                                hashlib, pefile, Wireshark, Basic Pen-testing, Computer Networks
+                            </li>
+                            <li><strong>Soft Skills:</strong>
+                                Time Management, Technical Communication, Analytical Thinking, Team Leadership, Curiosity
+                            </li>
+                            <li><strong>Languages:</strong>
+                                English, Hindi, Telugu, Elementary French
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>Feb 2024 - March 2024</span><br>Cybersecurity based internship at The Red Users</li>
+                                <li>
+                                    <span>2024 – 2025</span><br>
+                                    <strong>TrojaNix - IIT Madras Malware Analysis Hackathon (Finalist)</strong><br>
+                                    • Trained ML and DL models for malware classification, achieving ~98% detection accuracy.<br>
+                                    • Analyzed large malware datasets, refining feature extraction for better detection.
+                                </li>
+
+                                <li>
+                                    <span>2024 – 2025</span><br>
+                                    <strong>SafeSurf Junior - MP Police Cyber Safety Awareness Hackathon (3rd Place)</strong><br>
+                                    • Developed a browser extension to filter harmful content for children, reducing exposure by ~90%.<br>
+                                    • Implemented an automated alert portal to notify law enforcement of potential violations.<br>
+                                    • Led a team of developers and coordinated end-to-end implementation.
+                                </li>
+
+                                <li>
+                                    <span>2016 – 2018</span><br>
+                                    <strong>International Robotics Competition (Group Leader)</strong><br>
+                                    • Led a five-member team to design and build competitive robotics models; placed in the top 10 out of 150+ teams.<br>
+                                    • Managed task distribution and ensured timely completion for international showcases.
+                                </li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li>
+                                <span>2023 - 2027</span><br>
+                                <strong>Vellore Institute of Technology</strong>
+                                <span class="percentage">CGPA: 8.04</span><br>
+                                I’m currently a Sophomore at Vellore Institute of Technology, pursuing a Bachelor of Technology in Computer Science with a specialization in Artificial Intelligence and Machine Learning.
+                            </li>
+
+                            <li>
+                                <span>2021 - 2023</span><br>
+                                <strong>High Schooling at Excellencia Junior College</strong>
+                                <span class="percentage">95.0%</span><br>
+                                During my time at Excellencia Junior College, I built a solid foundation in mathematics, which played a crucial role in shaping my understanding of complex algorithms and problem-solving techniques. My focus on subjects like calculus, algebra, and statistics sparked my interest in data science and machine learning. This academic experience not only strengthened my quantitative skills but also prepared me for advanced studies in AI & ML.
+                            </li>
+
+                            <li>
+                                <span>2019 - 2021</span><br>
+                                <strong>Middle Schooling from Shantiketan Vidyalaya</strong>
+                                <span class="percentage">94%</span><br>
+                                During the 2019-2020 academic period, I engaged in a diverse range of activities that contributed significantly to my personal and academic growth.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Services Section -->
+    <div id="services" class="scroll-animation">
+        <div class="container">
+            <h1 class="sub-title">What I do</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h2>GenAI projects</h2>
+                    <p>
+                        I explore the creative side of AI by working with generative models that produce text, images, and more. My projects involve leveraging state-of-the-art architectures like transformers and diffusion models to push the boundaries of what machines can create. I’m passionate about using GenAI to solve unique challenges and inspire innovation across domains.
+                    </p>                    <a href="https://github.com/adityasasidhar" target="_blank">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-brain"></i>
+                    <h2>Machine Learning</h2>
+                    <p>
+                    I specialize in building robust machine learning models to solve real-world problems. My experience spans supervised and unsupervised learning, model evaluation, and feature engineering. I enjoy experimenting with new algorithms and optimizing solutions for accuracy and efficiency.
+                </p>
+                    <a href="https://github.com/adityasasidhar" target="_blank">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-network-wired"></i>
+                    <h2>Deep Learning</h2>
+                    <p>
+                        I leverage deep learning to tackle complex problems using neural networks and advanced architectures. My expertise includes building and fine-tuning models for tasks like image recognition, natural language processing, and generative AI. I enjoy exploring the latest research and applying state-of-the-art techniques to deliver impactful solutions.
+                    </p>
+                    <a href="https://github.com/adityasasidhar" target="_blank">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div id="portfolio" class="scroll-animation">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="assets/imgA.png">
+                    <div class="layer">
+                        <h3>Pygame Map Generator</h3>
+                        <p>This is a little idea I got while thinking about applications of LLMs in game development, where we could use them to rapidly change our environment.</p>
+                        <a href="https://github.com/adityasasidhar/fun-with-pygame"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="assets/imgB.png">
+                    <div class="layer">
+                        <h3>RoadVision</h3>
+                        <p>An AI-powered web application designed to detect and recognize license plates from images. It can identify speeding violations by comparing timestamps from multiple camera points and stores all data with visual proof for verification.</p>
+                        <a href="https://github.com/adityasasidhar/RoadVision"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="assets/imgC.png">
+                    <div class="layer">
+                        <h3>Zuck your very own AI hacker buddy</h3>
+                        <p>A cybersecurity-focused, Gemini based Agent. This project provides an interactive terminal interface for cybersecurity and system administration tasks on Linux systems.</p>
+                        <a href="https://github.com/adityasasidhar/Zuck-your-very-own-AI-hacker-buddy"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="assets/imgD.png">
+                    <div class="layer">
+                        <h3>Info Finder</h3>
+                        <p>Privacy-first app for local text/URL summarization and Q&A using Google's Gemma 3. Offers secure scraping, content chunking, and browser/CLI access.</p>
+                        <a href="https://github.com/adityasasidhar/Info-finder"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="assets/imgE.png">
+                    <div class="layer">
+                        <h3>Student Performance Analysis</h3>
+                        <p>This project analyzes various factors that influence student academic performance. The goal is to understand what impacts student success by examining relationships between grades and different aspects of students' lives and backgrounds.</p>
+                        <a href="https://github.com/adityasasidhar/Student-Performance-Ananlysis"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--GitHub Stat Section-->
+
+ <div id="github-feed" class="scroll-animation">
+    <div class="container">
+        <h1 class="sub-title">My GitHub Activity</h1>
+        <div class="github-container">
+            <div class="github-stats">
+                <h3>GitHub Stats</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fa-solid fa-code-commit"></i>
+                        <span id="total-commits">0</span>
+                        <p>Total Commits</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <span id="total-repos">0</span>
+                        <p>Public Repos</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fa-solid fa-star"></i>
+                        <span id="total-stars">0</span>
+                        <p>Total Stars</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fa-solid fa-code-pull-request"></i>
+                        <span id="total-prs">0</span>
+                        <p>Pull Requests</p>
+                    </div>
+                </div>
+            </div>
+            <div class="github-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-feed" id="activity-feed">
+                    <!-- Activity items will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+    <!-- Resume Section -->
+    <div id="resume" class="scroll-animation">
+        <div class="RESUME">
+            <h1 class="sub-title">My Resume</h1>
+            <a href="assets/resume.pdf" download class="btn" >Download</a>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="scroll-animation">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>  
+                    <p><i class="fa-solid fa-paper-plane"></i> telikicherlaadityasasidhar@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i> +91 7428564847</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/aditya-sasidhar-2399bb27a" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/adityasasidhar" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.kaggle.com/tadityasasidhar" target="_blank" title="Kaggle">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Kaggle_logo.png" alt="Kaggle" style="height: 24px; vertical-align: middle;">
+                        </a>
+                        <a href="https://huggingface.co/adityasasidhar" target="_blank" title="Hugging Face">
+                            <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" style="height: 24px; vertical-align: middle;">
+                        </a>
+                    </div>
+                </div>        
+                <div class="contact-right"> 
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your name" required>
+                        <input type="E-Mail" name="E-Mail" placeholder="Your E-Mail" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2024 Aditya - All Rights Reserved.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="three.js"></script>
+    </div>
+</body>
+</html>
