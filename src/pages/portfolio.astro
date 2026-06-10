@@ -1,0 +1,611 @@
+---
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, AUTHOR_NAME, GITHUB_URL, LINKEDIN_URL } from '../consts';
+import profileImage from '../assets/img.jpeg';
+
+const projects = [
+  {
+    title: 'BrowserControl',
+    description: 'Vision-first browser automation MCP server for AI agents. Uses a Set-of-Marks approach — annotated screenshots with numbered elements — so agents just say "click 5" instead of wrestling with CSS selectors. Published on PyPI with 8 GitHub stars.',
+    tags: ['Python', 'MCP', 'Browser Automation', 'AI Agents'],
+    link: 'https://github.com/adityasasidhar/browsercontrol',
+    status: 'Active',
+  },
+  {
+    title: 'Space CLI',
+    description: 'A fully local CLI coding assistant powered by Ollama. 100% private, zero cost, offline-capable — with a plan-execute workflow, rich terminal UI, git integration, sandboxed Python execution, and 30+ built-in tools.',
+    tags: ['Python', 'Ollama', 'CLI', 'Local AI'],
+    link: 'https://github.com/adityasasidhar/space-cli',
+    status: 'Active',
+  },
+  {
+    title: 'TinyMoE',
+    description: 'A small-scale experiment validating Mixture of Experts architectures in compact language models — exploring whether MoE efficiency gains hold at tiny parameter counts.',
+    tags: ['Python', 'ML Research', 'LLMs', 'MoE'],
+    link: 'https://github.com/adityasasidhar/TinyMoe',
+    status: 'Research',
+  },
+  {
+    title: 'Nemotron Reasoning Challenge',
+    description: 'Notebook experiments from the Nemotron reasoning challenge — pushing small models on structured reasoning tasks.',
+    tags: ['Python', 'Jupyter', 'LLMs', 'Reasoning'],
+    link: 'https://github.com/adityasasidhar/nemotron-reasoning-challenge',
+    status: 'Research',
+  },
+  {
+    title: 'QuizProject',
+    description: 'A Flask-based interface for generating and taking exams with both online and offline modes. Simple, practical, self-hostable.',
+    tags: ['Python', 'Flask', 'Web'],
+    link: 'https://github.com/adityasasidhar/quizproject',
+    status: 'Shipped',
+  },
+];
+
+const interests = [
+  'Large Language Models', 'AI Agents', 'MCP / Tool Use',
+  'Mixture of Experts', 'Browser Automation', 'Local AI',
+  'Python', 'Rust', 'TypeScript',
+  'ML Research', 'Open Source', 'CLI Tools',
+  'Neural Architectures', 'Reasoning Models',
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`Portfolio — ${SITE_TITLE}`} description={`${AUTHOR_NAME}'s portfolio — projects, interests, and ways to connect.`} />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <!-- Hero -->
+      <section class="portfolio-hero">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true">◉</span>
+            Portfolio
+          </div>
+          <h1 class="hero-title">{AUTHOR_NAME}</h1>
+          <p class="hero-subtitle">
+            CS student at VIT · Building AI agents, LLM tools, and open-source
+            software. AGI ain't gonna invent itself.
+          </p>
+          <div class="hero-actions">
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <Image src={profileImage} alt={AUTHOR_NAME} class="profile-image" />
+      </section>
+
+      <!-- Divider -->
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <!-- Projects -->
+      <section class="projects-section">
+        <header class="section-header">
+          <h2 class="section-label">Projects</h2>
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="section-link">View all on GitHub →</a>
+        </header>
+
+        <div class="projects-grid">
+          {projects.map((project) => (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-card">
+              <div class="project-header">
+                <h3 class="project-title">{project.title}</h3>
+                <span class:list={['project-status', `status-${project.status.toLowerCase().replace(' ', '-')}`]}>
+                  {project.status}
+                </span>
+              </div>
+              <p class="project-description">{project.description}</p>
+              <div class="project-tags">
+                {project.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <!-- Interests -->
+      <section class="interests-section">
+        <header class="section-header">
+          <h2 class="section-label">Interests & Skills</h2>
+        </header>
+
+        <div class="interests-cloud">
+          {interests.map((interest, i) => (
+            <span class="interest-tag" style={`animation-delay: ${i * 60}ms`}>
+              {interest}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <!-- Connect -->
+      <section class="connect-section">
+        <header class="section-header">
+          <h2 class="section-label">Connect</h2>
+        </header>
+
+        <div class="connect-grid">
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="connect-card">
+            <div class="connect-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="connect-details">
+              <span class="connect-label">GitHub</span>
+              <span class="connect-handle">@adityasasidhar</span>
+            </div>
+            <span class="connect-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="connect-card">
+            <div class="connect-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div class="connect-details">
+              <span class="connect-label">LinkedIn</span>
+              <span class="connect-handle">Aditya Sasidhar</span>
+            </div>
+            <span class="connect-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="mailto:telikicherlaadityasasidhar@gmail.com" class="connect-card">
+            <div class="connect-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+            <div class="connect-details">
+              <span class="connect-label">Email</span>
+              <span class="connect-handle">telikicherlaadityasasidhar@gmail.com</span>
+            </div>
+            <span class="connect-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    width: var(--max-wide);
+    max-width: calc(100% - 3rem);
+    margin: 0 auto;
+    padding: 0 0 6rem;
+  }
+
+  /* ─── Hero ─── */
+  .portfolio-hero {
+    padding: 6rem 0 5rem;
+    max-width: 840px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-content {
+    flex: 1;
+  }
+
+  .profile-image {
+    width: 338px;
+    height: 338px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    object-fit: cover;
+    flex-shrink: 0;
+    transform: translate(35%, 5%);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .eyebrow-dot {
+    font-size: 0.7rem;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 400;
+    font-family: var(--font-serif);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  /* ─── Buttons ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+    cursor: pointer;
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn-primary {
+    background-color: var(--text-primary);
+    color: var(--surface-bg);
+  }
+  .btn-primary:hover {
+    background-color: var(--accent);
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--surface-border);
+  }
+  .btn-ghost:hover {
+    background-color: var(--surface-raised);
+    color: var(--text-primary);
+    border-color: var(--surface-divider);
+    text-decoration: none;
+  }
+
+  /* ─── Divider ─── */
+  .section-divider {
+    height: 1px;
+    background: var(--surface-border);
+    margin: 1rem 0 4rem;
+  }
+
+  /* ─── Section Shared ─── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .section-label {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .section-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .section-link:hover { color: var(--accent-hover); }
+
+  /* ─── Projects ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    background: var(--surface-card);
+    text-decoration: none;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+  }
+
+  .project-card:hover {
+    border-color: var(--surface-divider);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .project-title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .project-card:hover .project-title {
+    color: var(--accent);
+  }
+
+  .project-status {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    background-color: var(--surface-raised);
+    color: var(--text-muted);
+    border: 1px solid var(--surface-border);
+  }
+
+  .status-active {
+    color: #5a9a6b;
+    background: rgba(90, 154, 107, 0.1);
+    border-color: rgba(90, 154, 107, 0.2);
+  }
+
+  .status-in-progress {
+    color: var(--brand-coral);
+    background: rgba(212, 120, 90, 0.1);
+    border-color: rgba(212, 120, 90, 0.2);
+  }
+
+  .status-shipped {
+    color: #7c8ab8;
+    background: rgba(124, 138, 184, 0.1);
+    border-color: rgba(124, 138, 184, 0.2);
+  }
+
+  .status-research {
+    color: #a07bc0;
+    background: rgba(160, 123, 192, 0.1);
+    border-color: rgba(160, 123, 192, 0.2);
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 0.2em 0.6em;
+    border-radius: 100px;
+    background: var(--surface-raised);
+    color: var(--text-muted);
+    border: 1px solid var(--surface-border);
+  }
+
+  /* ─── Interests ─── */
+  .interests-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .interest-tag {
+    font-size: 0.9375rem;
+    font-weight: 450;
+    padding: 0.5em 1em;
+    border-radius: var(--radius-sm);
+    background: var(--surface-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--surface-border);
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+    animation: fadeIn var(--dur-slow) var(--ease-out) both;
+  }
+
+  .interest-tag:hover {
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    border-color: var(--surface-divider);
+    transform: translateY(-1px);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ─── Connect ─── */
+  .connect-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .connect-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--surface-border);
+    text-decoration: none;
+    transition: none;
+  }
+
+  .connect-card:last-child {
+    border-bottom: 1px solid var(--surface-border);
+  }
+
+  .connect-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    color: var(--text-muted);
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .connect-card:hover .connect-icon {
+    color: var(--accent);
+    background-color: var(--surface-raised);
+    border-color: var(--surface-divider);
+  }
+
+  .connect-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .connect-label {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .connect-card:hover .connect-label {
+    color: var(--accent);
+  }
+
+  .connect-handle {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .connect-arrow {
+    font-size: 1rem;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+  }
+
+  .connect-card:hover .connect-arrow {
+    color: var(--accent);
+    transform: translateX(3px);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .portfolio-hero { 
+      padding: 3.5rem 0 3rem; 
+      gap: 1.5rem;
+    }
+    
+    .profile-image {
+      width: 120px;
+      height: 120px;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
