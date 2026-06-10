@@ -13,9 +13,16 @@ import HeaderLink from './HeaderLink.astro';
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Writing</HeaderLink>
       <HeaderLink href="/portfolio">Portfolio</HeaderLink>
+      <HeaderLink href="/research">Research</HeaderLink>
     </div>
 
     <div class="nav-actions">
+      <a href="/search" class="search-btn" aria-label="Search" title="Search">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </a>
       <button
         id="theme-toggle"
         aria-label="Toggle dark mode"
@@ -140,6 +147,31 @@ import HeaderLink from './HeaderLink.astro';
     align-items: center;
     gap: 0.75rem;
     flex-shrink: 0;
+  }
+
+  /* ── Search button ── */
+  .search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    background: var(--surface-card);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .search-btn:hover {
+    background-color: var(--surface-raised);
+    color: var(--text-primary);
+    border-color: var(--surface-divider);
+    text-decoration: none;
   }
 
   /* ── Theme toggle ── */

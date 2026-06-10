@@ -1,0 +1,199 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`404 — ${SITE_TITLE}`} description="Page not found." />
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <section class="not-found">
+        <div class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true">◉</span>
+          404
+        </div>
+        <h1 class="title">This patch of sky is empty.</h1>
+        <p class="subtitle">
+          Unlike Hubble, we didn't find anything here. The page you're looking
+          for has drifted out of frame — or never existed.
+        </p>
+        <div class="actions">
+          <a href="/" class="btn btn-primary">Back to home</a>
+          <a href="/blog" class="btn btn-ghost">Read the writing</a>
+        </div>
+        <div class="star-field" aria-hidden="true">
+          <canvas id="stars-canvas"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<script>
+  const canvas = document.getElementById('stars-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    const W = canvas.parentElement!.clientWidth;
+    const H = canvas.parentElement!.clientHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    if (ctx) {
+      const stars = Array.from({ length: 120 }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.6 + 0.3,
+        a: Math.random() * 0.7 + 0.2,
+        speed: Math.random() * 0.004 + 0.001,
+        phase: Math.random() * Math.PI * 2,
+      }));
+
+      let t = 0;
+      function draw() {
+        ctx!.clearRect(0, 0, W, H);
+        t += 0.016;
+        for (const s of stars) {
+          ctx!.beginPath();
+          ctx!.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          const alpha = s.a * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+          ctx!.fillStyle = `rgba(212, 120, 90, ${alpha})`;
+          ctx!.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+  }
+</script>
+
+<style>
+  main {
+    width: var(--max-wide);
+    max-width: calc(100% - 3rem);
+    margin: 0 auto;
+    padding: 0 0 6rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .not-found {
+    padding: 6rem 0;
+    max-width: 600px;
+    position: relative;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .eyebrow-dot {
+    font-size: 0.7rem;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 400;
+    font-family: var(--font-serif);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn-primary {
+    background-color: var(--text-primary);
+    color: var(--surface-bg);
+  }
+  .btn-primary:hover {
+    background-color: var(--accent);
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--surface-border);
+  }
+  .btn-ghost:hover {
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    border-color: var(--surface-divider);
+    text-decoration: none;
+  }
+
+  .star-field {
+    position: absolute;
+    top: 0; right: -200px;
+    width: 400px;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 840px) {
+    .star-field { display: none; }
+    .not-found { padding: 4rem 0; }
+  }
+</style>

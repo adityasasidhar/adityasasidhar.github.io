@@ -11,4 +11,5 @@ export const AUTHOR_NAME = 'Aditya Sasidhar';
 export const GITHUB_URL = 'https://github.com/adityasasidhar';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/aditya-sasidhar-2399bb27a/';
 export const KAGGLE_URL = 'https://www.kaggle.com/tadityasasidhar';
+export const HUGGINGFACE_URL = 'https://huggingface.co/adityasasidhar';
 export const ORCID_URL = 'https://orcid.org/0009-0005-6243-1329';
