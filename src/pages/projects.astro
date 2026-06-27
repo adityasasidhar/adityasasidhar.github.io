@@ -1,0 +1,501 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+type Project = {
+  title: string;
+  description: string;
+  status: 'Active' | 'Research' | 'Shipped';
+  year: string;
+  tags: string[];
+  links: { label: string; url: string }[];
+  features: string[];
+  featured?: boolean;
+};
+
+const projects: Project[] = [
+  {
+    title: 'Claude Code in 100 Lines',
+    description:
+      'A from-scratch reimplementation of how agent frameworks like Claude Code work — written in ~110 lines of Python. Every agent loop, tool dispatch, subagent, skill, and memory pattern is exposed and readable, running locally via Ollama with no Anthropic API calls.',
+    status: 'Shipped',
+    year: '2026',
+    tags: ['Python', 'Agents', 'Ollama', 'Local LLM', 'Education'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/adityasasidhar/claude-code-in-100-lines' },
+      { label: 'Blog post', url: '/blog/claude-code-in-100-lines' },
+    ],
+    features: [
+      'The full agent loop in a single readable file (llm.py)',
+      'Tool schemas auto-derived from Python signatures — no JSON to maintain',
+      'Progressive-disclosure skills and memory: tokens paid only when needed',
+      'Subagent spawning with bounded recursion to isolate noisy sub-tasks',
+    ],
+    featured: true,
+  },
+  {
+    title: 'BrowserControl',
+    description:
+      'A vision-first browser automation MCP server for AI agents. Instead of brittle CSS selectors, agents receive annotated screenshots with numbered elements and simply say "click 5." This makes browser automation far more robust for dynamic, real-world interfaces.',
+    status: 'Active',
+    year: '2024',
+    tags: ['Python', 'MCP', 'Browser Automation', 'AI Agents', 'Set-of-Marks'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/adityasasidhar/browsercontrol' },
+      { label: 'PyPI', url: 'https://pypi.org/project/browsercontrol' },
+    ],
+    features: [
+      'Annotated screenshots with numbered UI elements',
+      'MCP server compatible with Claude Desktop and other clients',
+      'Works on dynamic SPAs without brittle selectors',
+      'Published on PyPI with open-source community usage',
+    ],
+    featured: true,
+  },
+  {
+    title: 'Space CLI',
+    description:
+      'A fully local CLI coding assistant powered by Ollama. It brings a plan-execute workflow, rich terminal UI, git integration, sandboxed Python execution, and 30+ built-in tools — all running offline with zero API cost.',
+    status: 'Active',
+    year: '2024',
+    tags: ['Python', 'Ollama', 'CLI', 'Local AI', 'Agents'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/adityasasidhar/space-cli' },
+    ],
+    features: [
+      '100% local and privacy-preserving',
+      'Plan-execute agent loop with reflection',
+      'Built-in file, shell, git, and code execution tools',
+      'Rich terminal UI with progress and diff views',
+    ],
+    featured: true,
+  },
+  {
+    title: 'TinyMoE',
+    description:
+      'A small-scale experiment validating Mixture of Experts architectures in compact language models. It asks whether MoE efficiency gains hold when the model is tiny — a useful probe for resource-constrained settings.',
+    status: 'Research',
+    year: '2024',
+    tags: ['Python', 'ML Research', 'LLMs', 'MoE'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/adityasasidhar/TinyMoe' },
+    ],
+    features: [
+      'Sparse gating on top of a small transformer',
+      'Comparative efficiency analysis against dense baselines',
+      'Clean, educational codebase for MoE exploration',
+    ],
+  },
+  {
+    title: 'Nemotron Reasoning Challenge',
+    description:
+      'Notebook experiments from the Nemotron reasoning challenge, focusing on structured reasoning tasks with small language models. Explores prompt engineering, chain-of-thought, and model-specific fine-tuning tricks.',
+    status: 'Research',
+    year: '2024',
+    tags: ['Python', 'Jupyter', 'LLMs', 'Reasoning'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/adityasasidhar/nemotron-reasoning-challenge' },
+    ],
+    features: [
+      'Reproducible Jupyter notebooks',
+      'Reasoning benchmarks and error analysis',
+      'Fine-tuning and prompt engineering comparisons',
+    ],
+  },
+  {
+    title: 'QuizProject',
+    description:
+      'A Flask-based web app for generating and taking exams with both online and offline modes. Simple, practical, and self-hostable — built for classrooms and small study groups.',
+    status: 'Shipped',
+    year: '2023',
+    tags: ['Python', 'Flask', 'Web', 'Education'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/adityasasidhar/quizproject' },
+    ],
+    features: [
+      'Online and offline exam modes',
+      'Question generation and scoring',
+      'Self-hostable Flask backend',
+    ],
+  },
+];
+
+const featured = projects.filter((p) => p.featured);
+const others = projects.filter((p) => !p.featured);
+
+const statusClass = {
+  Active: 'status-active',
+  Research: 'status-research',
+  Shipped: 'status-shipped',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Projects"
+      description="Detailed project write-ups on AI agents, browser automation, local LLMs, and machine learning experiments."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main id="main-content">
+      <!-- Hero -->
+      <section class="projects-hero reveal">
+        <div class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true">◉</span>
+          Projects
+        </div>
+        <h1 class="page-title">Things I have built.</h1>
+        <p class="page-subtitle">
+          A deeper look at projects in AI agents, local language models, browser automation, and ML research. Each one is a puzzle I enjoyed solving.
+        </p>
+      </section>
+
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <!-- Featured projects -->
+      {featured.length > 0 && (
+        <section class="featured-section reveal" aria-labelledby="featured-heading">
+          <h2 id="featured-heading" class="section-label">Featured</h2>
+          <div class="featured-list">
+            {featured.map((project) => (
+              <article class="featured-card">
+                <div class="featured-header">
+                  <div>
+                    <h3 class="featured-title">{project.title}</h3>
+                    <p class="featured-meta">
+                      <span class:list={['project-status', statusClass[project.status]]}>{project.status}</span>
+                      <span class="project-year">{project.year}</span>
+                    </p>
+                  </div>
+                </div>
+                <p class="featured-description">{project.description}</p>
+                <ul class="feature-list">
+                  {project.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+                <div class="project-footer">
+                  <div class="project-tags">
+                    {project.tags.map((tag) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                  <div class="project-links">
+                    {project.links.map((link) => (
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link"
+                      >
+                        {link.label}
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- All other projects -->
+      {others.length > 0 && (
+        <section class="all-projects-section reveal" aria-labelledby="all-heading">
+          <h2 id="all-heading" class="section-label">More projects</h2>
+          <div class="projects-list">
+            {others.map((project) => (
+              <article class="project-card">
+                <div class="project-card-header">
+                  <h3 class="project-card-title">{project.title}</h3>
+                  <span class:list={['project-status', statusClass[project.status]]}>{project.status}</span>
+                </div>
+                <p class="project-card-description">{project.description}</p>
+                <ul class="feature-list compact">
+                  {project.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+                <div class="project-footer compact">
+                  <div class="project-tags">
+                    {project.tags.map((tag) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                  <div class="project-links">
+                    {project.links.map((link) => (
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link"
+                      >
+                        {link.label}
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <!-- CTA -->
+      <section class="projects-cta reveal">
+        <h2 class="cta-title">Want to see more?</h2>
+        <p class="cta-text">
+          Most of my work lives on GitHub, including experiments that never became full projects.
+        </p>
+        <a
+          href="https://github.com/adityasasidhar"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          View GitHub profile
+        </a>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  main {
+    width: var(--max-wide);
+    max-width: calc(100% - 3rem);
+    margin: 0 auto;
+    padding: 0 0 6rem;
+  }
+
+  .projects-hero {
+    padding: 6rem 0 5rem;
+    max-width: 720px;
+  }
+
+  .project-year {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  /* ─── Featured cards ─── */
+  .featured-section {
+    margin-bottom: 4rem;
+  }
+
+  .featured-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .featured-card {
+    padding: 2rem;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-card);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+
+  .featured-card:hover {
+    border-color: var(--surface-divider);
+    box-shadow: var(--shadow-md);
+  }
+
+  .featured-header {
+    margin-bottom: 1rem;
+  }
+
+  .featured-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+    line-height: 1.25;
+  }
+
+  .featured-description {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0 0 1.25rem;
+  }
+
+  /* ─── Feature lists ─── */
+  .feature-list {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feature-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .feature-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .feature-list.compact {
+    gap: 0.35rem;
+  }
+
+  .feature-list.compact li {
+    font-size: 0.9rem;
+  }
+
+  /* ─── Footer row: tags + links ─── */
+  .project-footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--surface-border);
+  }
+
+  .project-footer.compact {
+    padding-top: 1rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .project-link:hover {
+    color: var(--accent-hover);
+  }
+
+  .project-link span {
+    font-size: 0.85em;
+  }
+
+  /* ─── More projects list ─── */
+  .all-projects-section {
+    margin-bottom: 4rem;
+  }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .project-card {
+    padding: 2rem 0;
+    border-top: 1px solid var(--surface-border);
+  }
+
+  .project-card:last-child {
+    border-bottom: 1px solid var(--surface-border);
+  }
+
+  .project-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .project-card-description {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0 0 1rem;
+  }
+
+  /* ─── CTA ─── */
+  .projects-cta {
+    padding: 2rem 0;
+    max-width: 560px;
+  }
+
+  .cta-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .cta-text {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .projects-hero { padding: 3.5rem 0 3rem; }
+    .featured-card { padding: 1.25rem; }
+    .project-footer { flex-direction: column; gap: 1rem; }
+    .featured-title { font-size: 1.25rem; }
+    .featured-description { font-size: 1rem; }
+  }
+</style>
