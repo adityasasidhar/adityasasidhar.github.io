@@ -2,6 +2,7 @@
 import HeaderLink from './HeaderLink.astro';
 ---
 
+<a href="#main-content" class="skip-link">Skip to content</a>
 <header id="site-header">
   <nav aria-label="Main navigation">
     <a href="/" class="wordmark" aria-label="The Deep Field — Home">
@@ -9,12 +10,13 @@ import HeaderLink from './HeaderLink.astro';
       The Deep Field
     </a>
 
-    <div class="nav-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Writing</HeaderLink>
-      <HeaderLink href="/portfolio">Portfolio</HeaderLink>
-      <HeaderLink href="/research">Research</HeaderLink>
-    </div>
+      <div class="nav-links">
+        <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/blog">Writing</HeaderLink>
+        <HeaderLink href="/projects">Projects</HeaderLink>
+        <HeaderLink href="/portfolio">Portfolio</HeaderLink>
+        <HeaderLink href="/research">Research</HeaderLink>
+      </div>
 
     <div class="nav-actions">
       <a href="/search" class="search-btn" aria-label="Search" title="Search">
@@ -48,12 +50,30 @@ import HeaderLink from './HeaderLink.astro';
           </svg>
         </span>
       </button>
+      <button
+        id="hamburger"
+        class="hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        type="button"
+      >
+        <span class="hbar" aria-hidden="true"></span>
+        <span class="hbar" aria-hidden="true"></span>
+        <span class="hbar" aria-hidden="true"></span>
+      </button>
     </div>
   </nav>
+  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <a href="/">Home</a>
+    <a href="/blog">Writing</a>
+    <a href="/projects">Projects</a>
+    <a href="/portfolio">Portfolio</a>
+    <a href="/research">Research</a>
+  </div>
 </header>
 
 <script>
-  // Theme persistence and toggle
   const getStoredTheme = () => localStorage.getItem('theme');
   const getSystemTheme = () =>
     window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -63,15 +83,33 @@ import HeaderLink from './HeaderLink.astro';
     localStorage.setItem('theme', theme);
   };
 
-  // Apply on load (before paint to avoid flash)
   const stored = getStoredTheme();
   applyTheme(stored ?? getSystemTheme());
 
-  // Toggle handler
   const btn = document.getElementById('theme-toggle');
   btn?.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
     applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  hamburger?.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!isOpen));
+    mobileNav?.setAttribute('aria-hidden', String(isOpen));
+    mobileNav?.classList.toggle('open', !isOpen);
+    hamburger.classList.toggle('open', !isOpen);
+  });
+
+  // Close menu on nav link click
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger?.setAttribute('aria-expanded', 'false');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      mobileNav.classList.remove('open');
+      hamburger?.classList.remove('open');
+    });
   });
 </script>
 
@@ -97,11 +135,11 @@ import HeaderLink from './HeaderLink.astro';
     max-width: var(--max-wide);
     margin: 0 auto;
     padding: 0 1.5rem;
-    height: 60px;
+    min-height: 60px;
     gap: 2rem;
+    flex-wrap: wrap;
   }
 
-  /* ── Wordmark ── */
   .wordmark {
     display: flex;
     align-items: center;
@@ -115,6 +153,7 @@ import HeaderLink from './HeaderLink.astro';
     white-space: nowrap;
     flex-shrink: 0;
     transition: color var(--dur-fast) var(--ease-out);
+    padding: 0.75rem 0;
   }
 
   .wordmark:hover {
@@ -132,16 +171,16 @@ import HeaderLink from './HeaderLink.astro';
     transform: rotate(45deg);
   }
 
-  /* ── Nav links ── */
   .nav-links {
     display: flex;
     align-items: center;
     gap: 0.25rem;
     flex: 1;
     justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
   }
 
-  /* ── Actions ── */
   .nav-actions {
     display: flex;
     align-items: center;
@@ -149,7 +188,6 @@ import HeaderLink from './HeaderLink.astro';
     flex-shrink: 0;
   }
 
-  /* ── Search button ── */
   .search-btn {
     display: flex;
     align-items: center;
@@ -174,7 +212,6 @@ import HeaderLink from './HeaderLink.astro';
     text-decoration: none;
   }
 
-  /* ── Theme toggle ── */
   #theme-toggle {
     display: flex;
     align-items: center;
@@ -205,27 +242,110 @@ import HeaderLink from './HeaderLink.astro';
     transform: scale(0.96);
   }
 
-  /* Hide both icons by default */
   .icon-sun, .icon-moon {
     display: none;
   }
 
-  /* Light theme: show sun icon */
   :global(:root:not([data-theme="dark"])) .icon-sun {
     display: flex;
   }
 
-  /* Dark theme: show moon icon */
   :global([data-theme="dark"]) .icon-moon {
     display: flex;
   }
 
-  /* ── Mobile ── */
-  @media (max-width: 640px) {
+  /* ─── Hamburger ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .hamburger:hover {
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    border-color: var(--surface-divider);
+  }
+
+  .hbar {
+    display: block;
+    width: 15px;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+  }
+
+  .hamburger.open .hbar:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  .hamburger.open .hbar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open .hbar:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+  /* ─── Mobile nav dropdown ─── */
+  .mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--surface-bg);
+    border-bottom: 1px solid var(--surface-border);
+    padding: 0.5rem 1.5rem 1rem;
+    flex-direction: column;
+    gap: 0;
+    z-index: 99;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .mobile-nav.open {
+    display: flex;
+  }
+
+  .mobile-nav a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--surface-border);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .mobile-nav a:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  @media (max-width: 720px) {
     nav {
       padding: 0 1rem;
-      gap: 1rem;
+      flex-wrap: nowrap;
+      gap: 0.75rem;
     }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .wordmark { padding: 0; }
+  }
+
+  @media (max-width: 480px) {
     .wordmark span:not(.wordmark-icon) {
       display: none;
     }

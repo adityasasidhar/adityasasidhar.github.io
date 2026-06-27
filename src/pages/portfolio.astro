@@ -66,7 +66,7 @@ try {
   const data = await res.json();
   const contribs: ContribDay[] = data.contributions;
   contribTotal = contribs.reduce((s, d) => s + d.count, 0);
-  const firstDay = new Date(contribs[0].date).getDay(); // 0 = Sun
+  const firstDay = new Date(contribs[0].date).getDay();
   const padded: (ContribDay | null)[] = [
     ...Array.from({ length: firstDay }, () => null),
     ...contribs,
@@ -82,20 +82,20 @@ try {
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`Portfolio — ${SITE_TITLE}`} description={`${AUTHOR_NAME}'s portfolio — projects, interests, and ways to connect.`} />
+    <BaseHead title="Portfolio" description={`${AUTHOR_NAME}'s portfolio — projects, interests, and ways to connect.`} />
   </head>
   <body>
     <Header />
 
-    <main>
+    <main id="main-content">
       <!-- Hero -->
-      <section class="portfolio-hero">
+      <section class="portfolio-hero reveal">
         <div class="hero-content">
-          <div class="hero-eyebrow">
+          <div class="eyebrow">
             <span class="eyebrow-dot" aria-hidden="true">◉</span>
             Portfolio
           </div>
-          <h1 class="hero-title">{AUTHOR_NAME}</h1>
+          <h1 class="page-title">{AUTHOR_NAME}</h1>
           <p class="hero-subtitle">
             CS student at VIT · Building AI agents, LLM tools, and open-source
             software. AGI ain't gonna invent itself.
@@ -115,16 +115,17 @@ try {
             </a>
           </div>
         </div>
-        <Image src={profileImage} alt={AUTHOR_NAME} class="profile-image" />
+        <Image src={profileImage} alt={AUTHOR_NAME} class="profile-image" loading="eager" />
       </section>
 
       <!-- Divider -->
       <div class="section-divider" aria-hidden="true"></div>
 
       <!-- Projects -->
-      <section class="projects-section">
+      <section class="projects-section reveal">
         <header class="section-header">
           <h2 class="section-label">Projects</h2>
+          <a href="/projects" class="section-link">Detailed view →</a>
         </header>
 
         <div class="projects-grid">
@@ -151,7 +152,7 @@ try {
       <div class="section-divider" aria-hidden="true"></div>
 
       <!-- GitHub Contributions -->
-      <section class="contributions-section">
+      <section class="contributions-section reveal">
         <header class="section-header">
           <h2 class="section-label">Contributions</h2>
         </header>
@@ -195,7 +196,7 @@ try {
       <div class="section-divider" aria-hidden="true"></div>
 
       <!-- Interests -->
-      <section class="interests-section">
+      <section class="interests-section reveal">
         <header class="section-header">
           <h2 class="section-label">Interests & Skills</h2>
         </header>
@@ -213,7 +214,7 @@ try {
       <div class="section-divider" aria-hidden="true"></div>
 
       <!-- Connect -->
-      <section class="connect-section">
+      <section class="connect-section reveal">
         <header class="section-header">
           <h2 class="section-label">Connect</h2>
         </header>
@@ -300,7 +301,6 @@ try {
     padding: 0 0 6rem;
   }
 
-  /* ─── Hero ─── */
   .portfolio-hero {
     padding: 6rem 0 5rem;
     max-width: 840px;
@@ -324,38 +324,6 @@ try {
     transform: translate(35%, 5%);
   }
 
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .eyebrow-dot {
-    font-size: 0.7rem;
-    animation: pulse 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.75rem);
-    font-weight: 400;
-    font-family: var(--font-serif);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: 1.25rem;
-  }
-
   .hero-subtitle {
     font-size: 1.125rem;
     line-height: 1.7;
@@ -369,85 +337,6 @@ try {
     gap: 0.75rem;
     flex-wrap: wrap;
   }
-
-  /* ─── Buttons ─── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.625rem 1.25rem;
-    border-radius: var(--radius-sm);
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition:
-      background-color var(--dur-fast) var(--ease-out),
-      color var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out),
-      box-shadow var(--dur-fast) var(--ease-out);
-    cursor: pointer;
-  }
-
-  .btn:active { transform: scale(0.98); }
-
-  .btn-primary {
-    background-color: var(--text-primary);
-    color: var(--surface-bg);
-  }
-  .btn-primary:hover {
-    background-color: var(--accent);
-    color: var(--text-inverse);
-    text-decoration: none;
-  }
-
-  .btn-ghost {
-    background-color: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--surface-border);
-  }
-  .btn-ghost:hover {
-    background-color: var(--surface-raised);
-    color: var(--text-primary);
-    border-color: var(--surface-divider);
-    text-decoration: none;
-  }
-
-  /* ─── Divider ─── */
-  .section-divider {
-    height: 1px;
-    background: var(--surface-border);
-    margin: 1rem 0 4rem;
-  }
-
-  /* ─── Section Shared ─── */
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .section-label {
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
-  .section-link {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--accent);
-    text-decoration: none;
-    transition: color var(--dur-fast) var(--ease-out);
-  }
-  .section-link:hover { color: var(--accent-hover); }
 
   /* ─── Projects ─── */
   .projects-grid {
@@ -501,44 +390,6 @@ try {
     color: var(--accent);
   }
 
-  .project-status {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 0.2em 0.6em;
-    border-radius: 100px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    background-color: var(--surface-raised);
-    color: var(--text-muted);
-    border: 1px solid var(--surface-border);
-  }
-
-  .status-active {
-    color: #5a9a6b;
-    background: rgba(90, 154, 107, 0.1);
-    border-color: rgba(90, 154, 107, 0.2);
-  }
-
-  .status-in-progress {
-    color: var(--brand-coral);
-    background: rgba(212, 120, 90, 0.1);
-    border-color: rgba(212, 120, 90, 0.2);
-  }
-
-  .status-shipped {
-    color: #7c8ab8;
-    background: rgba(124, 138, 184, 0.1);
-    border-color: rgba(124, 138, 184, 0.2);
-  }
-
-  .status-research {
-    color: #a07bc0;
-    background: rgba(160, 123, 192, 0.1);
-    border-color: rgba(160, 123, 192, 0.2);
-  }
-
   .project-description {
     font-size: 0.9rem;
     line-height: 1.6;
@@ -551,17 +402,6 @@ try {
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-top: auto;
-  }
-
-  .tag {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    padding: 0.2em 0.6em;
-    border-radius: 100px;
-    background: var(--surface-raised);
-    color: var(--text-muted);
-    border: 1px solid var(--surface-border);
   }
 
   /* ─── Contributions ─── */
@@ -750,11 +590,6 @@ try {
     color: var(--accent);
   }
 
-  .connect-handle {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-  }
-
   .connect-arrow {
     font-size: 1rem;
     color: var(--text-faint);
@@ -769,18 +604,39 @@ try {
     transform: translateX(3px);
   }
 
+  .connect-handle {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   /* ─── Responsive ─── */
-  @media (max-width: 640px) {
-    .portfolio-hero { 
-      padding: 3.5rem 0 3rem; 
-      gap: 1.5rem;
+  @media (max-width: 840px) {
+    .portfolio-hero {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
     }
-    
     .profile-image {
       width: 120px;
       height: 120px;
+      transform: none;
+      order: -1;
+      border-radius: 50%;
     }
+  }
 
+  @media (max-width: 640px) {
+    .portfolio-hero {
+      padding: 3.5rem 0 3rem;
+      gap: 1.5rem;
+    }
+    .profile-image {
+      width: 88px;
+      height: 88px;
+    }
     .projects-grid {
       grid-template-columns: 1fr;
     }

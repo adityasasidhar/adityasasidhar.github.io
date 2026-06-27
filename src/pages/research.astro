@@ -39,15 +39,15 @@ const areas = [
 <html lang="en">
   <head>
     <BaseHead
-      title={`Research — ${SITE_TITLE}`}
+      title="Research"
       description="Research interests, papers, and experiments in AI, language models, and intelligent systems."
     />
   </head>
   <body>
     <Header />
 
-    <main>
-      <section class="research-hero">
+    <main id="main-content">
+      <section class="research-hero reveal">
         <div class="eyebrow">
           <span class="eyebrow-dot" aria-hidden="true">◉</span>
           Research
@@ -75,7 +75,7 @@ const areas = [
       <div class="section-divider" aria-hidden="true"></div>
 
       <!-- Papers -->
-      <section class="papers-section">
+      <section class="papers-section reveal">
         <header class="section-header">
           <h2 class="section-label">Papers</h2>
         </header>
@@ -112,7 +112,7 @@ const areas = [
       <div class="section-divider" aria-hidden="true"></div>
 
       <!-- Research areas -->
-      <section class="areas-section">
+      <section class="areas-section reveal">
         <header class="section-header">
           <h2 class="section-label">Areas</h2>
         </header>
@@ -145,45 +145,6 @@ const areas = [
   .research-hero {
     padding: 6rem 0 5rem;
     max-width: 680px;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .eyebrow-dot {
-    font-size: 0.7rem;
-    animation: pulse 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .page-title {
-    font-size: clamp(2.5rem, 6vw, 3.75rem);
-    font-weight: 400;
-    font-family: var(--font-serif);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-  }
-
-  .page-subtitle {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
   }
 
   .hero-links {
@@ -239,67 +200,7 @@ const areas = [
   }
 
   /* ─── Papers ─── */
-  .paper-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .paper-item {
-    padding: 2rem 0;
-    border-top: 1px solid var(--surface-border);
-  }
-
-  .paper-item:last-child {
-    border-bottom: 1px solid var(--surface-border);
-  }
-
-  .paper-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .paper-title {
-    font-family: var(--font-serif);
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0;
-    line-height: 1.35;
-  }
-
-  .paper-status {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    padding: 0.2em 0.6em;
-    border-radius: 100px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .status-published {
-    color: #5a9a6b;
-    background: rgba(90,154,107,0.1);
-    border: 1px solid rgba(90,154,107,0.2);
-  }
-
-  .status-preprint {
-    color: var(--brand-coral, #D4785A);
-    background: rgba(212,120,90,0.1);
-    border: 1px solid rgba(212,120,90,0.2);
-  }
-
-  .status-in-review {
-    color: #7c8ab8;
-    background: rgba(124,138,184,0.1);
+ 24,138,184,0.1);
     border: 1px solid rgba(124,138,184,0.2);
   }
 

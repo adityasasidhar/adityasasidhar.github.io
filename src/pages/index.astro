@@ -22,9 +22,9 @@ const posts = (await getCollection('blog'))
   <body>
     <Header />
 
-    <main>
+    <main id="main-content">
       <!-- Hero -->
-      <section class="hero">
+      <section class="hero reveal">
         <div class="hero-content">
           <div class="hero-eyebrow">
             <span class="eyebrow-dot" aria-hidden="true">◉</span>
@@ -39,6 +39,7 @@ const posts = (await getCollection('blog'))
           </p>
           <div class="hero-actions">
             <a href="/blog" class="btn btn-primary">Read the writing</a>
+            <a href="/portfolio" class="btn btn-ghost">About me</a>
           </div>
         </div>
 
@@ -55,7 +56,7 @@ const posts = (await getCollection('blog'))
       </section>
 
       <!-- Interactive Neuron Animation -->
-      <section class="animation-section">
+      <section class="animation-section reveal">
         <NeuralNetwork />
       </section>
 
@@ -64,9 +65,9 @@ const posts = (await getCollection('blog'))
 
       <!-- Recent Writing -->
       {posts.length > 0 && (
-        <section class="recent-posts">
+        <section class="recent-posts reveal">
           <header class="section-header">
-            <h2 class="section-title">Recent writing</h2>
+            <h2 class="section-label">Recent writing</h2>
             <a href="/blog" class="section-link">All posts →</a>
           </header>
 
@@ -82,6 +83,7 @@ const posts = (await getCollection('blog'))
                         src={post.data.heroImage}
                         alt=""
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   )}
@@ -128,7 +130,18 @@ const posts = (await getCollection('blog'))
     max-width: 580px;
   }
 
-  /* ─── Hero Image ─── */
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
   .hero-image {
     position: relative;
     border-radius: var(--radius-lg);
@@ -156,18 +169,6 @@ const posts = (await getCollection('blog'))
     font-style: italic;
     letter-spacing: 0.01em;
     border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  }
-
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
   }
 
   .eyebrow-dot {
@@ -204,49 +205,6 @@ const posts = (await getCollection('blog'))
     flex-wrap: wrap;
   }
 
-  /* ─── Buttons ─── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.625rem 1.25rem;
-    border-radius: var(--radius-sm);
-    font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition:
-      background-color var(--dur-fast) var(--ease-out),
-      color var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out),
-      box-shadow var(--dur-fast) var(--ease-out);
-    cursor: pointer;
-  }
-
-  .btn:active { transform: scale(0.98); }
-
-  .btn-primary {
-    background-color: var(--text-primary);
-    color: var(--surface-bg);
-  }
-  .btn-primary:hover {
-    background-color: var(--accent);
-    color: var(--text-inverse);
-    text-decoration: none;
-  }
-
-  .btn-ghost {
-    background-color: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--surface-border);
-  }
-  .btn-ghost:hover {
-    background-color: var(--surface-raised);
-    color: var(--text-primary);
-    border-color: var(--surface-divider);
-    text-decoration: none;
-  }
-
   /* ─── Divider ─── */
   .section-divider {
     height: 1px;
@@ -262,7 +220,7 @@ const posts = (await getCollection('blog'))
     margin-bottom: 2rem;
   }
 
-  .section-title {
+  .section-label {
     font-family: var(--font-sans);
     font-size: 0.8125rem;
     font-weight: 600;
@@ -373,10 +331,19 @@ const posts = (await getCollection('blog'))
       gap: 3rem;
       padding: 4rem 0 3rem;
     }
+    .hero-image {
+      max-width: 480px;
+    }
   }
 
   @media (max-width: 640px) {
-    .hero { padding: 3.5rem 0 3rem; }
+    .hero { padding: 3rem 0 2.5rem; gap: 2rem; }
+    .hero-description { font-size: 1rem; margin-bottom: 2rem; }
     .post-image { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
   }
 </style>

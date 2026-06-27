@@ -8,13 +8,13 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={`Search — ${SITE_TITLE}`} description="Search posts, projects, and research across The Deep Field." />
+    <BaseHead title="Search" description="Search posts, projects, and research across The Deep Field." />
     <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
   </head>
   <body>
     <Header />
 
-    <main>
+    <main id="main-content">
       <section class="search-hero">
         <div class="eyebrow">
           <span class="eyebrow-dot" aria-hidden="true">◉</span>
@@ -65,38 +65,6 @@ import { SITE_TITLE } from '../consts';
     max-width: 680px;
   }
 
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .eyebrow-dot {
-    font-size: 0.7rem;
-    animation: pulse 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .page-title {
-    font-size: clamp(2.5rem, 6vw, 3.75rem);
-    font-weight: 400;
-    font-family: var(--font-serif);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin: 0;
-  }
-
   .search-wrapper {
     max-width: 720px;
     margin-bottom: 2rem;
@@ -125,7 +93,6 @@ import { SITE_TITLE } from '../consts';
     color: var(--accent);
   }
 
-  /* ── Pagefind UI theme overrides ── */
   :root {
     --pagefind-ui-scale: 0.95;
     --pagefind-ui-primary: var(--accent);

@@ -5,29 +5,67 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { SITE_TITLE, AUTHOR_NAME } from '../consts';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { wordCount?: number };
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, wordCount } = Astro.props;
+
+const readingTime = Math.ceil((wordCount ?? description?.split(' ')?.length ?? 200) / 200) || 1;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  author: { '@type': 'Person', name: AUTHOR_NAME },
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate && { dateModified: updatedDate.toISOString() }),
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_TITLE,
+    logo: { '@type': 'ImageObject', url: new URL('/favicon.svg', Astro.site).href },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(Astro.url.pathname, Astro.site).href },
+};
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'dark', securityLevel: 'loose' });
+      document.addEventListener('DOMContentLoaded', async () => {
+        const blocks = document.querySelectorAll('pre:has(code.language-mermaid)');
+        for (const pre of blocks) {
+          const code = pre.querySelector('code.language-mermaid');
+          const div = document.createElement('div');
+          div.className = 'mermaid';
+          div.textContent = code.textContent;
+          pre.replaceWith(div);
+        }
+        await mermaid.run();
+      });
+    </script>
   </head>
 
   <body>
     <Header />
 
-    <main>
+    <main id="main-content">
       <article>
         <!-- Article Header -->
-        <header class="article-header">
+        <header class="article-header reveal">
           <div class="article-meta">
             <a href="/blog" class="back-link">← Writing</a>
-            <time class="article-date">
-              <FormattedDate date={pubDate} />
-            </time>
+            <div class="article-meta-right">
+              <time class="article-date">
+                <FormattedDate date={pubDate} />
+              </time>
+              <span class="article-reading-time">{readingTime} {readingTime === 1 ? 'min' : 'mins'} read</span>
+            </div>
           </div>
           <h1 class="article-title">{title}</h1>
           {description && (
@@ -103,6 +141,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     gap: 0.5rem;
   }
 
+  .article-meta-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   .back-link {
     font-size: 0.875rem;
     font-weight: 500;
@@ -120,6 +164,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     font-size: 0.8125rem;
     color: var(--text-muted);
     letter-spacing: 0.01em;
+  }
+
+  .article-reading-time {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    letter-spacing: 0.02em;
   }
 
   .article-title {
@@ -210,6 +260,35 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
   .prose :global(li) {
     margin-bottom: 0.5em;
+  }
+
+  .prose :global(table) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    min-width: 0;
+  }
+
+  .prose :global(pre) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mermaid diagram centering */
+  .prose :global(.mermaid) {
+    text-align: center;
+    margin: 2rem 0;
+    overflow-x: auto;
+  }
+
+  @media (max-width: 640px) {
+    .article-header {
+      padding: 2.5rem 1.25rem 1.5rem;
+    }
+    .prose {
+      padding: 0 1.25rem 3rem;
+      font-size: 1rem;
+    }
   }
 
   /* ─── Article Footer ─── */
