@@ -88,38 +88,7 @@ const projects: Project[] = [
       'Clean, educational codebase for MoE exploration',
     ],
   },
-  {
-    title: 'Nemotron Reasoning Challenge',
-    description:
-      'Notebook experiments from the Nemotron reasoning challenge, focusing on structured reasoning tasks with small language models. Explores prompt engineering, chain-of-thought, and model-specific fine-tuning tricks.',
-    status: 'Research',
-    year: '2024',
-    tags: ['Python', 'Jupyter', 'LLMs', 'Reasoning'],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/adityasasidhar/nemotron-reasoning-challenge' },
-    ],
-    features: [
-      'Reproducible Jupyter notebooks',
-      'Reasoning benchmarks and error analysis',
-      'Fine-tuning and prompt engineering comparisons',
-    ],
-  },
-  {
-    title: 'QuizProject',
-    description:
-      'A Flask-based web app for generating and taking exams with both online and offline modes. Simple, practical, and self-hostable — built for classrooms and small study groups.',
-    status: 'Shipped',
-    year: '2023',
-    tags: ['Python', 'Flask', 'Web', 'Education'],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/adityasasidhar/quizproject' },
-    ],
-    features: [
-      'Online and offline exam modes',
-      'Question generation and scoring',
-      'Self-hostable Flask backend',
-    ],
-  },
+
 ];
 
 const featured = projects.filter((p) => p.featured);
@@ -316,14 +285,11 @@ const statusClass = {
     border: 1px solid var(--surface-border);
     border-radius: var(--radius-lg);
     background: var(--surface-card);
-    transition:
-      border-color var(--dur-fast) var(--ease-out),
-      box-shadow var(--dur-fast) var(--ease-out);
+    transition: border-color var(--dur-fast) var(--ease-out);
   }
 
   .featured-card:hover {
     border-color: var(--surface-divider);
-    box-shadow: var(--shadow-md);
   }
 
   .featured-header {

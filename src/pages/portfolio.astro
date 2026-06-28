@@ -28,20 +28,7 @@ const projects = [
     link: 'https://github.com/adityasasidhar/TinyMoe',
     status: 'Research',
   },
-  {
-    title: 'Nemotron Reasoning Challenge',
-    description: 'Notebook experiments from the Nemotron reasoning challenge — pushing small models on structured reasoning tasks.',
-    tags: ['Python', 'Jupyter', 'LLMs', 'Reasoning'],
-    link: 'https://github.com/adityasasidhar/nemotron-reasoning-challenge',
-    status: 'Research',
-  },
-  {
-    title: 'QuizProject',
-    description: 'A Flask-based interface for generating and taking exams with both online and offline modes. Simple, practical, self-hostable.',
-    tags: ['Python', 'Flask', 'Web'],
-    link: 'https://github.com/adityasasidhar/quizproject',
-    status: 'Shipped',
-  },
+
 ];
 
 const interests = [
@@ -356,16 +343,12 @@ try {
     text-decoration: none;
     transition:
       background-color var(--dur-fast) var(--ease-out),
-      border-color var(--dur-fast) var(--ease-out),
-      box-shadow var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out);
+      border-color var(--dur-fast) var(--ease-out);
   }
 
   .project-card:hover {
     border-color: var(--surface-divider);
     background: var(--surface-raised);
-    box-shadow: var(--shadow-sm);
-    transform: translateY(-2px);
     text-decoration: none;
   }
 

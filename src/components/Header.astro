@@ -6,7 +6,6 @@ import HeaderLink from './HeaderLink.astro';
 <header id="site-header">
   <nav aria-label="Main navigation">
     <a href="/" class="wordmark" aria-label="The Deep Field — Home">
-      <span class="wordmark-icon" aria-hidden="true">◉</span>
       The Deep Field
     </a>
 
@@ -143,7 +142,6 @@ import HeaderLink from './HeaderLink.astro';
   .wordmark {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     font-family: var(--font-serif);
     font-size: 1.0625rem;
     font-weight: 500;
@@ -159,16 +157,6 @@ import HeaderLink from './HeaderLink.astro';
   .wordmark:hover {
     color: var(--accent);
     text-decoration: none;
-  }
-
-  .wordmark-icon {
-    font-size: 0.9rem;
-    color: var(--accent);
-    transition: transform var(--dur-normal) var(--ease-out);
-  }
-
-  .wordmark:hover .wordmark-icon {
-    transform: rotate(45deg);
   }
 
   .nav-links {
@@ -194,21 +182,15 @@ import HeaderLink from './HeaderLink.astro';
     justify-content: center;
     width: 36px;
     height: 36px;
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-sm);
-    background: var(--surface-card);
+    background: none;
+    border: none;
     color: var(--text-muted);
     text-decoration: none;
-    transition:
-      background-color var(--dur-fast) var(--ease-out),
-      color var(--dur-fast) var(--ease-out),
-      border-color var(--dur-fast) var(--ease-out);
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
   .search-btn:hover {
-    background-color: var(--surface-raised);
     color: var(--text-primary);
-    border-color: var(--surface-divider);
     text-decoration: none;
   }
 
@@ -218,28 +200,16 @@ import HeaderLink from './HeaderLink.astro';
     justify-content: center;
     width: 36px;
     height: 36px;
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-sm);
-    background: var(--surface-card);
+    background: none;
+    border: none;
     color: var(--text-muted);
     cursor: pointer;
     padding: 0;
-    transition:
-      background-color var(--dur-fast) var(--ease-out),
-      color var(--dur-fast) var(--ease-out),
-      border-color var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out);
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
   #theme-toggle:hover {
-    background-color: var(--surface-raised);
     color: var(--text-primary);
-    border-color: var(--surface-divider);
-    transform: scale(1.04);
-  }
-
-  #theme-toggle:active {
-    transform: scale(0.96);
   }
 
   .icon-sun, .icon-moon {
@@ -264,21 +234,15 @@ import HeaderLink from './HeaderLink.astro';
     width: 36px;
     height: 36px;
     padding: 0;
-    background: var(--surface-card);
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-sm);
+    background: none;
+    border: none;
     color: var(--text-muted);
     cursor: pointer;
-    transition:
-      background-color var(--dur-fast) var(--ease-out),
-      color var(--dur-fast) var(--ease-out),
-      border-color var(--dur-fast) var(--ease-out);
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
   .hamburger:hover {
-    background: var(--surface-raised);
     color: var(--text-primary);
-    border-color: var(--surface-divider);
   }
 
   .hbar {

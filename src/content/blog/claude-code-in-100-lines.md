@@ -1,7 +1,8 @@
 ---
 title: 'Building Claude Code in 100 Lines'
-description: 'Every agent framework hides the loop or makes it too complex. I built a from-scratch reimplementation in ~110 lines of Python to show exactly what happens inside tools like Claude Code and Cursor — and what I learned surprised me.'
+description: 'Every agent framework hides the loop or makes it too complex. I built a from-scratch reimplementation in ~110 lines of Python to show exactly what happens inside tools like Claude Code and Cursor, and what I learned surprised me.'
 pubDate: '2026-06-27'
+heroImage: '../../assets/claude-code-hero.jpg'
 ---
 
 I've been using Claude Code for months. But I had a nagging feeling I didn't really understand *how* it worked. Not the architecture docs - the actual loop. So I built one from scratch.
@@ -20,7 +21,7 @@ flowchart TD
     B -->|text response| D([Done])
 ```
 
-That's it. The apparent intelligence of a coding agent comes from a good system prompt, well-designed tools, and a capable model. The harness is mechanical. Knowing this changes how you think about agents — the "magic" is never in the framework.
+That's it. The apparent intelligence of a coding agent comes from a good system prompt, well-designed tools, and a capable model. The harness is mechanical. Knowing this changes how you think about agents. The "magic" is never in the framework.
 
 ## Tool schemas should write themselves
 
@@ -60,4 +61,4 @@ After a few minutes you develop intuitions about *why* the model makes the choic
 
 The code is [on GitHub](https://github.com/adityasasidhar/claude-code-in-100-lines). Read `llm.py` first.
 
-*Not affiliated with Anthropic. Runs on whatever model you point Ollama at — no Anthropic API calls.*
+*Not affiliated with Anthropic. Runs on whatever model you point Ollama at, no Anthropic API calls.*
