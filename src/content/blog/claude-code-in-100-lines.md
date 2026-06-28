@@ -4,7 +4,7 @@ description: 'Every agent framework hides the loop or makes it too complex. I bu
 pubDate: '2026-06-27'
 ---
 
-I've been using Claude Code for months. But I had a nagging feeling I didn't really understand *how* it worked. Not the architecture docs — the actual loop. So I built one from scratch.
+I've been using Claude Code for months. But I had a nagging feeling I didn't really understand *how* it worked. Not the architecture docs - the actual loop. So I built one from scratch.
 
 [claude-code-in-100-lines](https://github.com/adityasasidhar/claude-code-in-100-lines) is a minimal agent harness in ~110 lines of Python that reimplements the core ideas, running entirely locally via Ollama.
 
@@ -24,7 +24,7 @@ That's it. The apparent intelligence of a coding agent comes from a good system 
 
 ## Tool schemas should write themselves
 
-Most frameworks make you maintain implementations *and* JSON schemas in parallel — they drift constantly. The fix: derive schemas from function signatures and docstrings automatically. Adding a tool becomes just writing a function.
+Most frameworks make you maintain implementations *and* JSON schemas in parallel - they drift constantly. The fix: derive schemas from function signatures and docstrings automatically. Adding a tool becomes just writing a function.
 
 ## Progressive disclosure keeps context lean
 
@@ -40,7 +40,7 @@ flowchart LR
     C -.->|no subagent tool| X[blocked]
 ```
 
-A subagent is just another `LLM` instance with an empty history, handed a fresh task. The parent calls it, waits for a single return value, and the child disappears. Children can't spawn children — this bounds recursion and keeps failures debuggable.
+A subagent is just another `LLM` instance with an empty history, handed a fresh task. The parent calls it, waits for a single return value, and the child disappears. Children can't spawn children - this bounds recursion and keeps failures debuggable.
 
 The power is scoping: noisy exploration (a wide search, a long build) runs in isolation and returns only its conclusion. The parent's context stays clean.
 
@@ -54,7 +54,7 @@ You> what files are in the current directory?
 LLM> The current directory contains: LICENSE, README.md, and src/.
 ```
 
-After a few minutes you develop intuitions about *why* the model makes the choices it does. Polished tools deliberately hide this. A transparent harness makes the reasoning legible — and that's the whole point of building one.
+After a few minutes you develop intuitions about *why* the model makes the choices it does. Polished tools deliberately hide this. A transparent harness makes the reasoning legible - and that's the whole point of building one.
 
 ---
 
