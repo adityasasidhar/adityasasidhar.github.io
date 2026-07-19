@@ -5,15 +5,17 @@ import Header from '../components/Header.astro';
 import { SITE_TITLE, GITHUB_URL, ORCID_URL } from '../consts';
 
 const papers = [
-  // Add your papers here as they come. Format:
-  // {
-  //   title: 'Paper Title',
-  //   authors: 'Sasidhar, A., et al.',
-  //   venue: 'Conference / Journal Name, Year',
-  //   abstract: 'Short abstract or summary.',
-  //   links: { pdf: '', arxiv: '', code: '' },
-  //   status: 'Published' | 'Preprint' | 'In Review',
-  // },
+  {
+    title: 'When Does Depth Recursion Pay? A Parameter-Matched Study of Weight-Tied Hybrid Transformers on 100M Unique Words',
+    authors: 'Aditya Sasidhar',
+    venue: 'BabyLM 2026 workshop (paper track, non-competition submission)',
+    abstract: 'Weight-tied depth recursion trades computation for effective depth without adding learned parameters. We pre-train five hybrid Gated DeltaNet + grouped-query attention transformers from scratch on the BabyLM 2026 Strict corpus under one tokenizer, data order, optimizer, and 500M-token budget. Two parameter-matched pairs share their learned parameter tensors and layer inventories; the recursive configuration re-applies each super-block three times and uses effective-depth residual scaling. At the final checkpoint, recursion improves validation loss by 0.026 and 0.019 nats, with the advantage present in nearly every aligned evaluation window. Mean zero-shot BLiMP rises by 3.31 and 4.21 points; the 3:1 gain is consistent across paradigms, whereas the 2:1 mean is driven by heterogeneous, right-tailed effects rather than a broad directional shift.',
+    links: {
+      pdf: '/papers/recursive-babylm-weight-tied-hybrid-transformers.pdf',
+      code: 'https://github.com/adityasasidhar/recursive-babylm',
+    },
+    status: 'Preprint',
+  },
 ];
 
 const areas = [
@@ -200,8 +202,33 @@ const areas = [
   }
 
   /* ─── Papers ─── */
- 24,138,184,0.1);
-    border: 1px solid rgba(124,138,184,0.2);
+  .paper-item {
+    padding: 2rem;
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-lg);
+    background: var(--surface-card);
+    margin-bottom: 1.5rem;
+  }
+
+  .paper-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .paper-status {
+    flex-shrink: 0;
   }
 
   .paper-authors {

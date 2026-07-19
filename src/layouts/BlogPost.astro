@@ -287,8 +287,32 @@ const jsonLd = {
   /* Mermaid diagram centering */
   .prose :global(.mermaid) {
     text-align: center;
-    margin: 2rem 0;
+    margin: 2.5rem 0;
     overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .prose :global(.mermaid svg) {
+    display: inline-block;
+    min-width: 720px;
+    max-width: none;
+    width: auto;
+    height: auto;
+    font-size: 16px;
+  }
+
+  .prose :global(.mermaid svg .nodeLabel),
+  .prose :global(.mermaid svg .edgeLabel),
+  .prose :global(.mermaid svg .label),
+  .prose :global(.mermaid svg text) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .prose :global(.mermaid svg) {
+      min-width: 560px;
+    }
   }
 
   @media (max-width: 640px) {
