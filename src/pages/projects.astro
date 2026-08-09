@@ -54,41 +54,6 @@ const projects: Project[] = [
     ],
     featured: true,
   },
-  {
-    title: 'Space CLI',
-    description:
-      'A fully local CLI coding assistant powered by Ollama. It brings a plan-execute workflow, rich terminal UI, git integration, sandboxed Python execution, and 30+ built-in tools — all running offline with zero API cost.',
-    status: 'Active',
-    year: '2024',
-    tags: ['Python', 'Ollama', 'CLI', 'Local AI', 'Agents'],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/adityasasidhar/space-cli' },
-    ],
-    features: [
-      '100% local and privacy-preserving',
-      'Plan-execute agent loop with reflection',
-      'Built-in file, shell, git, and code execution tools',
-      'Rich terminal UI with progress and diff views',
-    ],
-    featured: true,
-  },
-  {
-    title: 'TinyMoE',
-    description:
-      'A small-scale experiment validating Mixture of Experts architectures in compact language models. It asks whether MoE efficiency gains hold when the model is tiny — a useful probe for resource-constrained settings.',
-    status: 'Research',
-    year: '2024',
-    tags: ['Python', 'ML Research', 'LLMs', 'MoE'],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/adityasasidhar/TinyMoe' },
-    ],
-    features: [
-      'Sparse gating on top of a small transformer',
-      'Comparative efficiency analysis against dense baselines',
-      'Clean, educational codebase for MoE exploration',
-    ],
-  },
-
 ];
 
 const featured = projects.filter((p) => p.featured);
