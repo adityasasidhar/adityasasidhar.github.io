@@ -54,6 +54,24 @@ const projects: Project[] = [
     ],
     featured: true,
   },
+  {
+    title: 'Cutiepie',
+    description:
+      'A VS Code color theme built on exactly two accents over true black. Powder pink carries structure (functions, classes, tags, JSON keys), pale sky blue carries content (strings), and everything else stays greyscale. Ships as a dark and a light variant.',
+    status: 'Shipped',
+    year: '2026',
+    tags: ['VS Code', 'Theme', 'Color', 'Design', 'Python'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/adityasasidhar/cutiepie' },
+      { label: 'Marketplace', url: 'https://marketplace.visualstudio.com/items?itemName=adityasasidhar.cutiepie' },
+    ],
+    features: [
+      'Two-accent palette: pink for structure, sky blue for content',
+      'Matched dark and light variants from one set of color decisions',
+      'Diff and git colors rebuilt around the palette, with errors kept deliberately rosy',
+      'Previews and palette swatches generated from the theme JSON, so the docs cannot drift',
+    ],
+  },
 ];
 
 const featured = projects.filter((p) => p.featured);

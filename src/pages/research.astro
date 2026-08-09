@@ -17,24 +17,6 @@ const papers = [
     status: 'Preprint',
   },
 ];
-
-const areas = [
-  {
-    title: 'Language Model Architectures',
-    description: 'Exploring efficiency in transformer variants — mixture of experts, dynamic depth, and what happens when you take these ideas to very small scale.',
-    icon: '◈',
-  },
-  {
-    title: 'AI Agents & Tool Use',
-    description: 'Building and studying agents that interact with the real world through tools — browsers, CLIs, APIs. How do you make them reliable?',
-    icon: '◎',
-  },
-  {
-    title: 'Local & Private AI',
-    description: 'Making capable AI systems that run entirely on-device. Privacy, latency, and the question of what you actually need a cloud for.',
-    icon: '◇',
-  },
-];
 ---
 
 <!doctype html>
@@ -109,25 +91,6 @@ const areas = [
             <p>Papers in progress. Check back soon — or watch the <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a> for experiments that might turn into something.</p>
           </div>
         )}
-      </section>
-
-      <div class="section-divider" aria-hidden="true"></div>
-
-      <!-- Research areas -->
-      <section class="areas-section reveal">
-        <header class="section-header">
-          <h2 class="section-label">Areas</h2>
-        </header>
-
-        <div class="areas-grid">
-          {areas.map((area) => (
-            <div class="area-card">
-              <span class="area-icon" aria-hidden="true">{area.icon}</span>
-              <h3 class="area-title">{area.title}</h3>
-              <p class="area-description">{area.description}</p>
-            </div>
-          ))}
-        </div>
       </section>
     </main>
 
@@ -309,45 +272,8 @@ const areas = [
     text-decoration: underline;
   }
 
-  /* ─── Research areas ─── */
-  .areas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
-  }
-
-  .area-card {
-    padding: 1.5rem;
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-md);
-    background: var(--surface-card);
-  }
-
-  .area-icon {
-    display: block;
-    font-size: 1.25rem;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
-
-  .area-title {
-    font-family: var(--font-serif);
-    font-size: 1.0625rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0 0 0.6rem;
-  }
-
-  .area-description {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    color: var(--text-muted);
-    margin: 0;
-  }
-
   /* ─── Responsive ─── */
   @media (max-width: 640px) {
     .research-hero { padding: 3.5rem 0 3rem; }
-    .areas-grid { grid-template-columns: 1fr; }
   }
 </style>
